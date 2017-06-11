@@ -16,12 +16,15 @@ const validation = {
   },
 
   validateInput: function (req, schema) {
-    return this.validateParameters(req, schema)
+    return this.validateSchema(req.params, schema.params, 'params')
       .then(() => {
-        return this.validateQuery(req, schema)
+        return this.validateSchema(req.query, schema.query, 'query')
       })
       .then(() => {
-        return this.validateBody(req, schema)
+        return this.validateSchema(req.body, schema.body, 'body')
+      })
+      .then(() => {
+        return this.validateSchema(req.files, schema.files, 'files')
       })
   },
 
@@ -31,26 +34,18 @@ const validation = {
       .json({
         message: 'Some parameters are missing or invalid',
         success: false,
-        errors: err.errors
+        errors: {
+          errors: err.errors,
+          type: err.type
+        }
       })
   },
 
   // Validate segment parameters
-  validateParameters: function (req, schema) {
-    if (!schema || !schema.params) return Promise.resolve()
-    return this.validate(req.params, schema.params, 'params')
-  },
-
-  // Validate get, query parameters
-  validateQuery: function (req, schema) {
-    if (!schema || !schema.query) return Promise.resolve()
-    return this.validate(req.query, schema.params, 'query')
-  },
-
-  // Validate segment parameters
-  validateBody: function (req, schema) {
-    if (!schema || !schema.body) return Promise.resolve()
-    return this.validate(req.body, schema.body, 'body')
+  validateSchema: function (data, schema, type) {
+    if (typeof data === 'undefined') data = {}
+    if (!schema) return Promise.resolve()
+    return this.validate(data, schema, type)
   },
 
   // Validate set of data

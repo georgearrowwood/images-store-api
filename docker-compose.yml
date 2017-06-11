@@ -10,6 +10,7 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
+      - MONGO_CONNECT_STRING=mongodb://mongodb:27017/images
     restart: always
     command:  npm run start-dev
     links:

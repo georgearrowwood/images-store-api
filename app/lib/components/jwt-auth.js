@@ -18,7 +18,7 @@ const jwtAuth = {
 
   // Show error
   handleError: function (res) {
-    res.status(403)
+    res.status(401)
       .json({
         success: false
       })

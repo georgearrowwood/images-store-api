@@ -63,6 +63,7 @@ paths:
         - name: fileData
           in: formData
           type: file
+          required: true
           description: The Image file to upload
       security:
         - basicAuth: []
