@@ -41,6 +41,3 @@ and then from within api image container bash
 ```
 npm test
 ```
-
-* Write a terraform module to provision an AWS environment to host the
-  application, and a script to deploy the application to the environment.
