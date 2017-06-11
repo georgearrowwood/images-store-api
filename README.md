@@ -21,7 +21,7 @@ this repository.
 * https://www.npmjs.com/package/sharp is used for images manipulations
 * mocha, chai, chai-http are used for testing
 * All functionality is covered with n2n tests(TODO: Unit tests)
-* Api is dokerized
+* Api is dockerized, mongo db is in separate image
 
 ## instructions
 
@@ -36,7 +36,7 @@ docker-compose up
 ```
 To be able to run tests
 ```
-docker exec -ti <api cotainer id> bash
+docker exec -ti <api container id> bash
 ```
 and then from within api image container bash
 ```
