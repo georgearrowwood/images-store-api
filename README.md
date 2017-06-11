@@ -21,6 +21,7 @@ this repository.
 * https://www.npmjs.com/package/sharp is used for images manipulations
 * mocha, chai, chai-http are used for testing
 * All functionality is covered with n2n tests(TODO: Unit tests)
+* Api is dokerized
 
 ## instructions
 
